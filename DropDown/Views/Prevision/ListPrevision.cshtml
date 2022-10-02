@@ -1,0 +1,251 @@
+﻿@model IEnumerable<DropDown.Models.Prévision>
+@using Microsoft.AspNetCore.Http;
+@{
+    ViewData["Title"] = "ListPrevision";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - COM</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/DropDown.styles.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="~/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="~/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="~/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
+
+    <link href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
+
+</head>
+<body>
+
+    <header id="header" class="fixed-top">
+        <div class="float-left">
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <h1 class="text-light"><a href="#header"><span>NewBiz</span></a></h1> -->
+
+            <a href="#intro" class="scrollto"><img src="~/img/com.png" alt="" width="200" height="80" /></a>
+
+
+
+        </div>
+        <div class="float-right">
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <h1 class="text-light"><a href="#header"><span>NewBiz</span></a></h1> -->
+
+            <img src="~/img/MEF.jpg" alt="" width="200" height="80" />
+
+
+
+        </div>
+        <div>
+
+
+
+            <nav class="main-nav float-right d-none d-lg-block">
+
+                <ul>
+
+                    @if (!string.IsNullOrEmpty(Context.Session.GetString("Email")))
+                    {
+
+                        <li>
+                            <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+
+                        <li>
+                            <a asp-area="" asp-controller="Stock" asp-action="ListStock">Stock</a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-controller="Prevision" asp-action="ListPrevision">Prévision</a>
+                        </li>
+                        @if (Context.Session.GetString("Profil") == "AC")
+                        {
+                            <li>
+                                <a asp-area="" asp-controller="Cascade" asp-action="ListProg">Action</a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="Admin" asp-action="ListUser">Utilisateurs</a>
+                            </li>
+
+                        }
+
+
+
+
+                        var Email = Context.Session.GetString("Email");
+                        var Nom = Context.Session.GetString("Nom");
+                        var Prenom = Context.Session.GetString("Prenom");
+                        var Structure = Context.Session.GetString("Structure");
+
+
+
+                        <li>
+                            <a asp-action="Logout" asp-controller="Account">Logout</a>
+                        </li>
+                        <li><a>@Nom @Prenom</a></li>
+
+
+
+                        @if (Context.Session.GetString("Profil") == "DR")
+                        {
+                            <li>
+                                <a>@Structure</a>
+
+                            </li>
+                        }
+
+
+                    }
+                    else
+                    {
+
+                        <li>
+                            <a asp-action="Login" asp-controller="Account">Login</a>
+                        </li>
+
+                    }
+                </ul>
+
+            </nav>
+
+
+        </div>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <h1>Liste des Prévisions</h1>
+
+        <form class="d-inline-block" asp-controller="Cascade" asp-action="CascadeDropDown">
+            <div class="form-group mb-2 d-inline-block">
+                <input name="button" value="prevId" hidden />
+            </div>
+
+            <button type="submit" class="btn btn-primary mb-2">Ajouter</button>
+        </form>
+
+        <table id="TABLE" class="styled-table">
+            <thead>
+                <tr>
+                    <th>
+                        Programme
+                    </th>
+                    <th>
+                        Projet
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                    <th>
+                        DR
+                    </th>
+                    <th>
+                        Annee
+                    </th>
+
+
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Superficie)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Valeur)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Date)
+                    </th>
+
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Objectif.ActionProj.Projet.Programme.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Objectif.ActionProj.Projet.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Objectif.ActionProj.Name)
+                        </td>
+
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Objectif.Dr.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Objectif.Exercice.Annee)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Superficie)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Valeur)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+
+
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Modifier</a>
+                        </td>
+                        <td>
+                            <a asp-action="Delete" asp-route-id="@item.Id">Supprimer</a>
+                        </td>
+                        <td>
+                            <a asp-action="ListDetails" asp-route-id="@item.Id">Liste Details</a>
+                        </td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.Id">Ajouter Details</a>
+                        </td>
+                        <td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+
+    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            alert("hi");
+            $("TABLE").DataTable();
+        });
+    </script>
+   
+</body>
+</html>
+
+

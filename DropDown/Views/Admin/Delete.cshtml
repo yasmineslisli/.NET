@@ -1,0 +1,74 @@
+﻿@model DropDown.Models.User
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h3>Etes vous surs de vouloir supprimer cet utilisateur?</h3>
+
+   
+    <hr />
+    <section id="contact">
+        <div class="container-fluid">
+            <div class="row wow fadeInUp">
+                <div class="col-6 offset-3">
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nom)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nom)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Prenom)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Prenom)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Cin)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Cin)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+       
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.structure)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.structure.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Profil)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Profil.Name)
+        </dd>
+       
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+                    <input type="submit" value="Supprimer" class="btn btn-primary mb-2" /> |
+        <a asp-action="ListUser">Revenir</a>
+    </form>
+</div>
+</div>
+    </div>
+  
+</section>
+

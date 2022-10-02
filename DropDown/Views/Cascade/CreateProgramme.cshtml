@@ -1,0 +1,33 @@
+﻿@model DropDown.Models.Programme
+
+@{
+    ViewData["Title"] = "CreateProgramme";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Ajputer Programme</h1>
+
+<hr />
+<<section id="contact">
+    <div class="container-fluid">
+        <div class="row wow fadeInUp">
+            <div class="col-6 offset-3">
+        <form asp-action="CreateProgramme">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+</section>
+<div>
+    <a asp-action="ListProg">Revenir</a>
+</div>
+

@@ -1,0 +1,22 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Warning";
+}
+<section id="contact">
+    <div class="container-fluid">
+        <div class="col-6 offset-3">
+            <p>Objectif existant</p>
+
+            <div class="form-group">
+                <p>Voulez-vous le modifier ou le supprimer <a asp-action="ListStock" class="btn btn-sm btn-primary float-center">ListStock</a></p>
+            </div>
+            <br />
+            <div class="form-group">
+                <p>Voulez-vous ajouter un nouvel objectif <a asp-action="CascadeDropDown" asp-controller="Cascade" class="btn btn-sm btn-primary float-center">Objectif</a></p>
+            </div>
+            
+       </div>
+    </div>
+</section>

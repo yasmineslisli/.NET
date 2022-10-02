@@ -1,0 +1,54 @@
+﻿@model DropDown.Models.Objectif
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<h1>Objectif </h1>
+<h4>@ViewBag.Dr     </h4>
+
+<hr />
+
+<section id="contact">
+    <div class="container-fluid">
+        <div class="row wow fadeInUp">
+            <div class="col-6 offset-3">
+                <div class="form-group">
+                    <input value="@ViewBag.Programme" class="form-control" readonly />
+                </div>
+                <div class="form-group">
+                    <input value="@ViewBag.Projet" class="form-control" readonly />
+                </div>
+                <div class="form-group">
+                    <input value="@ViewBag.Action" class="form-control" readonly />
+                </div>
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                
+                <input asp-for="ActionProjId" class="form-control" value="@ViewBag.Id" hidden />
+            </div>
+            <div class="form-group">
+                <label asp-for="ExerciceId" class="control-label">Exercice</label>
+                <select asp-for="ExerciceId" class ="form-control" asp-items="ViewBag.ExerciceId"></select>
+            </div>
+            <div class="form-group">
+                
+                <input asp-for="Drid" class ="form-control" value="@ViewBag.Drid" hidden/>
+            </div>
+                    <div class="text-center">
+                <input type="submit" value="Créer" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+</section>
+<div>
+    <a asp-action="ListStock" asp-controller="Stock">Revenir</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

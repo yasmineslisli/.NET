@@ -1,0 +1,39 @@
+﻿@model DropDown.Models.ActionProj
+
+@{
+    ViewData["Title"] = "DeleteAction";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Supprimer l'Action'</h1>
+
+<h3>Etes vous surs de vouloir supprimer l'action</h3>
+<section id="contact">
+    <div class="container-fluid">
+        <div class="row wow fadeInUp">
+            <div class="col-6 offset-3">
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Projet)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Projet.Name)
+        </dd>
+    </dl>
+    
+    <form asp-action="DeleteAction">
+        <input type="hidden" asp-for="Id" />
+                    <input type="submit" value="Supprimer" class="btn btn-primary mb-2" /> |
+                    <a asp-action="ListAction">Revenir</a>
+    </form>
+</div>
+</div>
+</div>
+</section>

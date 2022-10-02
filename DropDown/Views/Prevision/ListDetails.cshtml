@@ -1,0 +1,79 @@
+﻿@model IEnumerable<DropDown.Models.Detail>
+
+@{
+    ViewData["Title"] = "ListDetails";
+}
+
+<h1>Liste des détails des prévisions</h1>
+
+
+<table class="styled-table">
+    <thead>
+        <tr>
+
+            @*//dd prev*@
+            <th>
+                @Html.DisplayNameFor(model => model.Dd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prévision)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumDossier)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Trn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IndiceTrn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumTrn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Superficie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Valeur)
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dd.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prévision.Objectif.ActionProj.Name)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumDossier)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Trn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IndiceTrn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumTrn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Superficie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Valeur)
+            </td>
+            
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Modifier</a> |
+                
+                <a asp-action="DeleteDetails" asp-route-id="@item.Id">Supprimer</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

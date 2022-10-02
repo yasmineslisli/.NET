@@ -1,0 +1,113 @@
+﻿@model IEnumerable<DropDown.Models.Stock>
+
+@{
+    ViewData["Title"] = "ListStock";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet" />
+</head>
+
+<h1>Liste des Stocks</h1>
+
+<form class="d-inline-block" asp-controller="Cascade" asp-action="CascadeDropDown">
+    <div class="form-group mb-2 d-inline-block">
+        <input name="button" value="stockId" hidden />
+        
+    </div>
+    <button type="submit" class="btn btn-primary mb-2" id="btn">Ajouter</button>
+</form>
+
+
+
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>
+                Programme
+            </th>
+            <th>
+                Projet
+            </th>
+            <th>
+                Action
+            </th>
+            <th>
+                DR
+            </th>
+            <th>
+                Annee
+            </th>
+           
+
+
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Superficie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Valeur)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+
+
+
+
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Objectif.ActionProj.Projet.Programme.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Objectif.ActionProj.Projet.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Objectif.ActionProj.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Objectif.Dr.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Objectif.Exercice.Annee)
+                </td>
+                
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Superficie)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Valeur)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Modifier</a>
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@item.Id">Supprimer</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</html>

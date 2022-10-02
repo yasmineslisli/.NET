@@ -1,0 +1,39 @@
+﻿@model IEnumerable<DropDown.Models.ActionProj>
+
+@{
+    ViewData["Title"] = "ListAction";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Liste des Actions</h1>
+
+<p>
+    <a asp-action="CreateAction" class="btn btn-primary mb-2">Ajouter une action</a>
+</p>
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>
+                <a href="c:\users\yasmine\source\repos\dropdown\dropdown\views\cascade\listprog.cshtml">c:\users\yasmine\source\repos\dropdown\dropdown\views\cascade\listprog.cshtml</a>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            
+            <td>
+                <a asp-action="EditAction" asp-route-id="@item.Id">Modifier</a> |
+                
+                <a asp-action="DeleteAction" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

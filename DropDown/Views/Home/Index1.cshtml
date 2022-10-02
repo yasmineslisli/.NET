@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - COM</title>
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+
+    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <link href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
+    <script>
+        $(document).ready(function () {
+            alert("hi");
+            $("TABLE").DataTable();
+        });
+    </script>
+
+</head>
+<body>
+
+    <div class="container">
+
+       
+        <table id="TABLE" class="styled-table">
+            <thead>
+                <tr>
+                    <th>
+                        Programme
+                    </th>
+                    <th>
+                        Projet
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                    <th>
+                        DR
+                    </th>
+                    <th>
+                        Annee
+                    </th>
+
+
+
+                    @*<th>
+                        @Html.DisplayNameFor(model => model.Nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Superficie)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Valeur)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Date)
+                    </th>
+
+                    <th></th>
+                    <th></th>
+                    <th></th>*@
+                </tr>
+            </thead>
+            @*<tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Objectif.ActionProj.Projet.Programme.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Objectif.ActionProj.Projet.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Objectif.ActionProj.Name)
+                        </td>
+
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Objectif.Dr.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Objectif.Exercice.Annee)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Superficie)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Valeur)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+*@
+
+                        @*<td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Modifier</a>
+                        </td>
+                        <td>
+                            <a asp-action="Delete" asp-route-id="@item.Id">Supprimer</a>
+                        </td>
+                        <td>
+                            <a asp-action="ListDetails" asp-route-id="@item.Id">Liste Details</a>
+                        </td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.Id">Ajouter Details</a>
+                        </td>
+                        <td>*@
+
+                    </tr>
+                
+            </tbody>
+        </table>
+
+    </div>
+
+
+
+</body>
+</html>
+
+

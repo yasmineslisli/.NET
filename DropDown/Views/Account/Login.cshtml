@@ -1,0 +1,154 @@
+﻿@model DropDown.Models.User
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>COM DDE</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicons -->
+  <link href="~/img/favicon.png" rel="icon">
+  <link href="~/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Libraries CSS Files -->
+  <link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="~/lib/animate/animate.min.css" rel="stylesheet">
+  <link href="~/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+  <link href="~/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="~/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+    <link href="~/css/style.css" rel="stylesheet">
+
+  
+</head>
+
+<body>
+
+  
+  <!--==========================
+    Intro Section
+  ============================-->
+  <section id="intro" class="clearfix">
+        
+    <div class="container">
+
+      <div class="intro-info">
+                <h2>Contrat <span>Objectifs</span><br>et <span>Moyens</span></h2>
+                <h2>Direction des Domaines de L'Etat</h2>
+         
+      </div>
+
+    </div>
+  </section><!-- #intro -->
+
+  <main id="main">
+
+    <!--==========================
+      About Us Section
+    ============================-->
+    <section id="about">
+      <div class="container">
+
+        <header class="section-header">
+          <h3>A propos</h3>
+                    <p>
+                        La contractualisation au sein de la Direction des Domaines de l’Etat a pour but de matérialiser les engagements réciproques de l’administration centrale et des services déconcentrés autour d’intérêts et d’objectifs communs, formalisés par un contrat qui constitue une référence partagée.
+                        Le contrat objectifs/moyens comporte des engagements chiffrés de mise en œuvre des objectifs opérationnels et stratégiques fixés au niveau de la Note d’Orientations Générales de le DDE.
+                    </p>
+        </header>
+
+       </div> 
+       </section>
+
+    <!--==========================
+      Login Section
+    ============================-->
+    <section id="services" class="section-bg">
+      
+
+                        <h3>Authentification</h3>
+                        <h1>@ViewBag.Message</h1>
+
+                        <hr />
+                        <div class="d-flex justify-content-center">
+                            <div class="col-md-4">
+                                <form asp-action="Login">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                                    <div class="form-group">
+                                        <label asp-for="Email" class="control-label"></label>
+                                        <input asp-for="Email" class="form-control" />
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Password" class="control-label"></label>
+                                        <input asp-for="Password" class="form-control" type="password" />
+                                        <span asp-validation-for="Password" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="submit" value="Login" class="btn btn-primary" />
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+
+      
+    </section><!-- #services -->
+
+    
+  </main>
+
+  <!--==========================
+    Footer
+  ============================-->
+  <footer id="footer">
+    
+          
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong>COM</strong>. All Rights Reserved
+      </div>
+      
+    </div>
+  </footer><!-- #footer -->
+
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+  <!-- Uncomment below i you want to use a preloader -->
+  <!-- <div id="preloader"></div> -->
+
+  <!-- JavaScript Libraries -->
+  <script src="lib/jquery/dist/jquery.min.js"></script>
+  <script src="lib/jquery/dist/jquery-migrate.min.js"></script>
+  <script src="lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="lib/easing/easing.min.js"></script>
+  <script src="lib/mobile-nav/mobile-nav.js"></script>
+  <script src="lib/wow/wow.min.js"></script>
+  <script src="lib/waypoints/waypoints.min.js"></script>
+  <script src="lib/counterup/counterup.min.js"></script>
+  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="lib/isotope/isotope.pkgd.min.js"></script>
+  <script src="lib/lightbox/js/lightbox.min.js"></script>
+  <!-- Contact Form JavaScript File -->
+  <script src="contactform/contactform.js"></script>
+
+  <!-- Template Main Javascript File -->
+  <script src="js/main.js"></script>
+
+</body>
+</html>
+
+
+

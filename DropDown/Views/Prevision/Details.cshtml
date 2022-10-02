@@ -1,0 +1,72 @@
+﻿@model DropDown.Models.Detail
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<h4>Ajouter Detail</h4>
+<hr />
+<section id="contact">
+    <div class="container-fluid">
+        <div class="row wow fadeInUp">
+            <div class="col-6 offset-3">
+        <form asp-action="Details">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+
+                <input asp-for="PrévisionId" class="form-control" value="@ViewBag.PrévisionId.Id" hidden />
+            </div>
+            <div class="form-group">
+                <label asp-for="Ddid" class="control-label">Délegation</label>
+                <select asp-for="Ddid" class="form-control" asp-items="ViewBag.Ddid"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumDossier" class="control-label">Numero de dossier</label>
+                <input asp-for="NumDossier" class="form-control" />
+                <span asp-validation-for="NumDossier" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Trn" class="control-label">TRN</label>
+                <select asp-for="Trn" class="form-control col-md-8" style='text-transform:uppercase'>
+                    <option asp-for="Trn"></option>
+                    <option asp-for="Trn">T</option>
+                    <option asp-for="Trn">R</option>
+                    <option asp-for="Trn">N</option>
+                </select>
+                
+            </div>
+            <div class="form-group">
+                <label asp-for="IndiceTrn" class="control-label">Indice TRN</label>
+                <input asp-for="IndiceTrn" class="form-control" style='text-transform:uppercase' />
+                <span asp-validation-for="IndiceTrn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumTrn" class="control-label">Numero TRN</label>
+                <input asp-for="NumTrn" class="form-control" type="number"/>
+                <span asp-validation-for="NumTrn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Superficie" class="control-label"> Superficie (m²)</label>
+                <input asp-for="Superficie" class="form-control" />
+                <span asp-validation-for="Superficie" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Valeur" class="control-label"></label>
+                <input asp-for="Valeur" class="form-control" />
+                <span asp-validation-for="Valeur" class="text-danger"></span>
+            </div>
+            
+            
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+</section>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

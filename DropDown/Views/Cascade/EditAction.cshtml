@@ -1,0 +1,40 @@
+﻿@model DropDown.Models.ActionProj
+
+@{
+    ViewData["Title"] = "EditAction";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Modifier Action</h1>
+
+<hr />
+<section id="contact">
+    <div class="container-fluid">
+        <div class="row wow fadeInUp">
+            <div class="col-6 offset-3">
+        <form asp-action="EditAction">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                
+                <select asp-for="ProjetId" class="form-control" asp-items="ViewBag.ProjetId" hidden></select>
+                <span asp-validation-for="ProjetId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                        <input type="submit" value="Enregistrer" class="btn btn-primary mb-2" />
+            </div>
+        </form>
+            </div>
+        </div>
+</div>
+        </section>
+
+<div>
+    <a asp-action="ListAction">Revenir</a>
+</div>
+

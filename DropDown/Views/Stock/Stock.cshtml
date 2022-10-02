@@ -1,0 +1,72 @@
+﻿@model DropDown.Models.Stock
+
+@{
+    ViewData["Title"] = "Stock";
+}
+
+<h1>Stock</h1>
+
+<hr />
+<section id="contact">
+    <div class="container-fluid">
+        <div class="row wow fadeInUp">
+            <div class="col-6 offset-3">
+        <form asp-action="Stock">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*<div class="form-group">
+                <input  class="form-control" value="@ViewBag.Programme" readonly />
+                <span  class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input  class="form-control" value="@ViewBag.Projet" readonly />
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input  class="form-control" value="@ViewBag.Action" readonly />
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input  class="form-control" value="@ViewBag.Dr" readonly />
+                <span class="text-danger"></span>
+            </div>*@
+            
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Superficie" class="control-label"></label>
+                <input asp-for="Superficie" class="form-control" />
+                <span asp-validation-for="Superficie" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Valeur" class="control-label"></label>
+                <input asp-for="Valeur" class="form-control" />
+                <span asp-validation-for="Valeur" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                
+                <input asp-for="Date" class="form-control" value="@ViewBag.Date" hidden/>
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="ObjectifId" class="form-control" value="@ViewBag.ObjectifId" hidden />
+            </div>
+                    <div class="text-center">
+                <input type="submit" value="Créer" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+</section>
+<div>
+    <a asp-action="ListStock">Revenir</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

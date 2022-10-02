@@ -1,0 +1,135 @@
+﻿@using Microsoft.AspNetCore.Http;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - COM</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/DropDown.styles.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="~/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="~/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="~/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
+
+
+</head>
+<body>
+    
+    <header id="header" class="fixed-top">
+        <div class="float-left">
+                <!-- Uncomment below if you prefer to use an image logo -->
+                <!-- <h1 class="text-light"><a href="#header"><span>NewBiz</span></a></h1> -->
+                
+                    <a href="#intro" class="scrollto"><img src="~/img/com.png" alt="" width="200" height="80" /></a>
+                    
+
+                
+        </div>
+        <div class="float-right">
+                <!-- Uncomment below if you prefer to use an image logo -->
+                <!-- <h1 class="text-light"><a href="#header"><span>NewBiz</span></a></h1> -->
+                
+                    <img src="~/img/MEF.jpg" alt="" width="200" height="80" />
+                    
+
+                
+        </div>
+            <div >
+
+            
+
+            <nav class="main-nav float-right d-none d-lg-block">
+
+                <ul>
+
+                    @if (!string.IsNullOrEmpty(Context.Session.GetString("Email")))
+                    {
+
+                        <li>
+                            <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li> 
+
+                        <li>
+                            <a asp-area="" asp-controller="Stock" asp-action="ListStock">Stock</a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-controller="Prevision" asp-action="ListPrevision">Prévision</a>
+                        </li>
+                        @if (Context.Session.GetString("Profil")=="AC")
+                        {
+                            <li>
+                                <a asp-area="" asp-controller="Cascade" asp-action="ListProg">Action</a>
+                            </li>
+                            <li>
+                                <a asp-area="" asp-controller="Admin" asp-action="ListUser">Utilisateurs</a>
+                            </li>
+                            
+                        }
+                        
+                        
+                    
+            
+                var Email = Context.Session.GetString("Email");
+                var Nom = Context.Session.GetString("Nom");
+                var Prenom = Context.Session.GetString("Prenom");
+                var Structure = Context.Session.GetString("Structure");
+            
+
+            
+                        <li>
+                            <a asp-action="Logout" asp-controller="Account" >Logout</a>
+                        </li>
+                        <li><a>@Nom @Prenom</a></li>
+                        
+                    
+                    
+                    @if (Context.Session.GetString("Profil") == "DR")
+                    {
+                            <li>
+                                <a>@Structure</a>
+                            
+                        </li>
+                    }
+                    
+                
+            }
+            else
+            {
+                
+                    <li>
+                            <a asp-action="Login" asp-controller="Account" >Login</a>
+                    </li>
+                        
+            }
+                </ul>
+                
+        </nav>
+            
+
+            </div>
+        </div>
+    </header>
+   
+    <div class="container">
+        
+            @RenderBody()
+       
+    </div>
+
+    
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
