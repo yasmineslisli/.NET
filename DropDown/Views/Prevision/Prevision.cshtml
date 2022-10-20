@@ -4,7 +4,9 @@
     ViewData["Title"] = "Prévision";
 }
 
-<h1>Prévision</h1>
+
+<i class="pull-left "><img src="~/img/icons8-home-48.png" /></i>
+<span><h1>/Prévision/Créer</h1></span>
 
 
 <hr />
@@ -14,22 +16,71 @@
             <div class="col-6 offset-3">
         <form asp-action="Prevision">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label  class="control-label">Programme</label>
+                        <input asp-for="Objectif.ActionProj.Projet.Programme" value="@ViewBag.Programme" class="form-control" readonly />
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Projet</label>
+
+                        <input asp-for="Objectif.ActionProj.Projet" value="@ViewBag.Projet" class="form-control" readonly />
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Action</label>
+
+                        <input asp-for="Objectif.ActionProj" value="@ViewBag.ActionProj" class="form-control" readonly />
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Exercice</label>
+
+                        <input asp-for="Objectif.Exercice" value="@ViewBag.Exercice" class="form-control" readonly />
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Direction Régionale</label>
+
+                        <input asp-for="Objectif.Dr" value="@ViewBag.Dr" class="form-control" readonly />
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Stock en Nombre</label>
+
+                        <input asp-for="Objectif.Dr" value="@ViewBag.StockSup" class="form-control" readonly />
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Nombre" class="control-label">Prévision en Nombre</label>
+                        <input asp-for="Nombre" class="form-control" />
+                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Stock en Superficie</label>
+
+                        <input asp-for="Objectif.Dr" value="@ViewBag.StockNombre" class="form-control" readonly />
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Superficie" class="control-label">Prévision en Superficie</label>
+                        <input asp-for="Superficie" class="form-control" />
+                        <span asp-validation-for="Superficie" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Stock en Valeur</label>
+
+                        <input asp-for="Objectif.Dr" value="@ViewBag.StockValeur" class="form-control" readonly />
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Valeur" class="control-label">Prévision en Valeur</label>
+                        <input asp-for="Valeur" class="form-control" />
+                        <span asp-validation-for="Valeur" class="text-danger"></span>
+                    </div>
             
-            <div class="form-group">
-                <label asp-for="Nombre" class="control-label"></label>
-                <input asp-for="Nombre" class="form-control" />
-                <span asp-validation-for="Nombre" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Superficie" class="control-label"></label>
-                <input asp-for="Superficie" class="form-control" />
-                <span asp-validation-for="Superficie" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Valeur" class="control-label"></label>
-                <input asp-for="Valeur" class="form-control" />
-                <span asp-validation-for="Valeur" class="text-danger"></span>
-            </div>
+           
             <div class="form-group">
                 
                 <input asp-for="Date" class="form-control" value="@ViewBag.Date" hidden/>

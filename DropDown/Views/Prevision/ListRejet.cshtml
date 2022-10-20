@@ -1,0 +1,190 @@
+﻿@model PaginatedList<DropDown.Models.Prévision>
+    @using Microsoft.AspNetCore.Http;
+    @{
+        ViewData["Title"] = "ListPrevision";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+
+
+
+<i class="pull-left "><img src="~/img/icons8-home-48.png" /></i>
+<span><h1>/Prévision/List des prévisions rejetées</h1></span>
+
+
+<form class="d-inline-block" asp-controller="Cascade" asp-action="CascadeDropDown">
+        <div class="form-group mb-2 d-inline-block">
+            <input name="button" value="prevId" hidden />
+        </div>
+
+        <label class="control-label"> Cliquez pour ajouter une nouvelle prévision</label>
+        <button type="submit" class="btn btn-primary mb-2">Ajouter</button>
+    </form>
+
+    <form asp-action="ListPrevision" method="get">
+        <div class="form-actions no-color">
+            <p>
+                Chercher par Programme, Projet,Action, DR ou Exercice <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+                <input type="submit" value="Chercher" class="btn btn-default" /> |
+                <a asp-action="ListPrevision">Revenir</a>
+            </p>
+        </div>
+    </form>
+    <table id="TABLE" class="styled-table">
+        <thead>
+            <tr>
+                <th>
+                    <a asp-action="ListPrevision" asp-route-sortOrder="@ViewData["ProgrammeSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Programme</a>
+
+                </th>
+                <th>
+                    <a asp-action="ListPrevision" asp-route-sortOrder="@ViewData["ProjetSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Projet</a>
+
+                </th>
+                <th>
+                    <a asp-action="ListPrevision" asp-route-sortOrder="@ViewData["ActionSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Action</a>
+
+                </th>
+                <th>
+                    <a asp-action="ListPrevision" asp-route-sortOrder="@ViewData["DrSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Direction Régionale</a>
+
+                </th>
+                <th>
+                    <a asp-action="ListPrevision" asp-route-sortOrder="@ViewData["ExerciceSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Exercice</a>
+
+                </th>
+
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Superficie
+                </th>
+                <th>
+                    Valeur
+                </th>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Motif de Rejet
+                </th>
+                
+                <th>
+                    <a asp-action="ListPrevision" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Date</a>
+
+                </th>
+
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Objectif.ActionProj.Projet.Programme.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Objectif.ActionProj.Projet.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Objectif.ActionProj.Name)
+                    </td>
+
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Objectif.Dr.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Objectif.Exercice.Annee)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Superficie)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Valeur)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <th>
+                        @Html.DisplayFor(modelItem=> item.MotifRejet)
+                    </th>
+
+                    @if (Context.Session.GetString("Profil") == "DR")
+                    {
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Modifier</a>
+                        </td>
+                        <td>
+                            <a asp-action="Delete" asp-route-id="@item.Id">Supprimer</a>
+                        </td>
+                    }
+                    else
+                    {
+                        if (!(item.Etat == true))
+                        {
+                            <td>
+                                <button type="button" class="btn btn-success"> <a asp-action="Valider" asp-route-id="@item.Id">Valider</a></button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger"><a asp-action="Rejeter" asp-route-id="@item.Id">Rejeter</a></button>
+                            </td>
+                        }
+
+
+                    }
+
+                    <td>
+                        <a asp-action="ListDetails" asp-route-id="@item.Id">Liste Details</a>
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id">Ajouter Details</a>
+                    </td>
+                    <td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    @{
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    }
+
+    <a asp-action="ListPrevision"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-pageNumber="@(Model.PageIndex - 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @prevDisabled">
+        Précèdent
+    </a>
+    <a asp-action="ListPrevision"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-pageNumber="@(Model.PageIndex + 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @nextDisabled">
+        Suivant
+    </a>
+
+<button id="export" class="btn btn-secondary">Exporter en excel</button>
+<a asp-action="Index" asp-controller="Home" class="btn btn-primary">Retour</a>
+
+<script src="~/js/table2excel.js"></script>
+<script>
+    var table2excel = new Table2Excel();
+
+    document.getElementById('export').addEventListener('click', function () {
+        table2excel.export(document.querySelectorAll('table'));
+    });
+</script>
+
+
+

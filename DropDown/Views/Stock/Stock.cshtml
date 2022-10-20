@@ -4,7 +4,9 @@
     ViewData["Title"] = "Stock";
 }
 
-<h1>Stock</h1>
+<i class="pull-left "><img src="~/img/icons8-home-48.png" /></i>
+<span><h1>/Stock/Créer Stock</h1></span>
+
 
 <hr />
 <section id="contact">
@@ -13,22 +15,27 @@
             <div class="col-6 offset-3">
         <form asp-action="Stock">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @*<div class="form-group">
-                <input  class="form-control" value="@ViewBag.Programme" readonly />
+            <div class="form-group">
+                <input asp-for="Objectif.ActionProj.Projet.Programme" value="@ViewBag.Programme" class="form-control"  readonly/>
                 <span  class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input  class="form-control" value="@ViewBag.Projet" readonly />
+                        <input asp-for="Objectif.ActionProj.Projet" value="@ViewBag.Projet" class="form-control" readonly />
                 <span class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input  class="form-control" value="@ViewBag.Action" readonly />
+                        <input asp-for="Objectif.ActionProj" value="@ViewBag.ActionProj" class="form-control" readonly />
                 <span class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input  class="form-control" value="@ViewBag.Dr" readonly />
-                <span class="text-danger"></span>
-            </div>*@
+                    <div class="form-group">
+                        <input asp-for="Objectif.Exercice" value="@ViewBag.Exercice" class="form-control" readonly />
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Objectif.Dr" value="@ViewBag.Dr" class="form-control" readonly />
+                        <span class="text-danger"></span>
+                    </div>
+            
             
             <div class="form-group">
                 <label asp-for="Nombre" class="control-label"></label>

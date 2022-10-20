@@ -9,17 +9,21 @@
 # General
 --------------------------------------------------------------*/
 
-body {
+body{
   background: #fff;
   color: #444;
   font-family: "Open Sans", sans-serif;
 }
 
-a {
-  color: #007bff;
-  transition: 0.5s;
+.btn {
+    text-decoration: none !important;
+    outline: none !important;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
 }
-
 a:hover,
 a:active,
 a:focus {

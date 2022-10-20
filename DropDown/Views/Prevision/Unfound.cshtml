@@ -4,18 +4,21 @@
 @{
     ViewData["Title"] = "Warning";
 }
+
+
+<i class="pull-left "><img src="~/img/icons8-home-48.png" /></i>
+<span><h1>/Prévision/Erreur</h1></span>
+
 <section id="contact">
     <div class="container-fluid">
         <div class="row wow fadeInUp">
             <div class="col-6 offset-3">
     <p>Objectif existant</p>
-    <p>Voulez-vous le modifier </p>
+    <p>Voulez-vous le modifier ou le supprimer?</p>
 
     <a asp-action="ListPrevision">ListPrevision</a>
-    <p>Voulez-vous le supprimer </p>
-
-    <a asp-action="ListPrevision">ListPrevision</a>
-    <p>Voulez-vous ajouter un nouvel objectif</p>
+    
+    <p>Voulez-vous ajouter un nouvel objectif?</p>
 
     <a asp-action="CascadeDropDown" asp-controller="Cascade">New</a>
     </div>

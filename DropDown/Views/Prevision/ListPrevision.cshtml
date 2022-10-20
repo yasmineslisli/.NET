@@ -1,172 +1,73 @@
-﻿@model IEnumerable<DropDown.Models.Prévision>
+﻿@model PaginatedList<DropDown.Models.Prévision>
 @using Microsoft.AspNetCore.Http;
 @{
     ViewData["Title"] = "ListPrevision";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - COM</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/DropDown.styles.css" asp-append-version="true" />
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
 
-    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="~/lib/animate/animate.min.css" rel="stylesheet">
-    <link href="~/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-    <link href="~/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="~/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-    <link href="~/css/style.css" rel="stylesheet">
-
-    <link href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
-
-</head>
-<body>
-
-    <header id="header" class="fixed-top">
-        <div class="float-left">
-            <!-- Uncomment below if you prefer to use an image logo -->
-            <!-- <h1 class="text-light"><a href="#header"><span>NewBiz</span></a></h1> -->
-
-            <a href="#intro" class="scrollto"><img src="~/img/com.png" alt="" width="200" height="80" /></a>
+    <i class="pull-left "><img src="~/img/icons8-home-48.png" /></i>
+<span><h1>/Prévision/Liste des prévisions</h1></span>
 
 
 
-        </div>
-        <div class="float-right">
-            <!-- Uncomment below if you prefer to use an image logo -->
-            <!-- <h1 class="text-light"><a href="#header"><span>NewBiz</span></a></h1> -->
-
-            <img src="~/img/MEF.jpg" alt="" width="200" height="80" />
-
-
-
-        </div>
-        <div>
-
-
-
-            <nav class="main-nav float-right d-none d-lg-block">
-
-                <ul>
-
-                    @if (!string.IsNullOrEmpty(Context.Session.GetString("Email")))
-                    {
-
-                        <li>
-                            <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-
-                        <li>
-                            <a asp-area="" asp-controller="Stock" asp-action="ListStock">Stock</a>
-                        </li>
-                        <li>
-                            <a asp-area="" asp-controller="Prevision" asp-action="ListPrevision">Prévision</a>
-                        </li>
-                        @if (Context.Session.GetString("Profil") == "AC")
-                        {
-                            <li>
-                                <a asp-area="" asp-controller="Cascade" asp-action="ListProg">Action</a>
-                            </li>
-                            <li>
-                                <a asp-area="" asp-controller="Admin" asp-action="ListUser">Utilisateurs</a>
-                            </li>
-
-                        }
-
-
-
-
-                        var Email = Context.Session.GetString("Email");
-                        var Nom = Context.Session.GetString("Nom");
-                        var Prenom = Context.Session.GetString("Prenom");
-                        var Structure = Context.Session.GetString("Structure");
-
-
-
-                        <li>
-                            <a asp-action="Logout" asp-controller="Account">Logout</a>
-                        </li>
-                        <li><a>@Nom @Prenom</a></li>
-
-
-
-                        @if (Context.Session.GetString("Profil") == "DR")
-                        {
-                            <li>
-                                <a>@Structure</a>
-
-                            </li>
-                        }
-
-
-                    }
-                    else
-                    {
-
-                        <li>
-                            <a asp-action="Login" asp-controller="Account">Login</a>
-                        </li>
-
-                    }
-                </ul>
-
-            </nav>
-
-
-        </div>
-        </div>
-    </header>
-
-    <div class="container">
-
-        <h1>Liste des Prévisions</h1>
-
-        <form class="d-inline-block" asp-controller="Cascade" asp-action="CascadeDropDown">
+<form class="d-inline-block" asp-controller="Cascade" asp-action="CascadeDropDown">
             <div class="form-group mb-2 d-inline-block">
                 <input name="button" value="prevId" hidden />
             </div>
-
-            <button type="submit" class="btn btn-primary mb-2">Ajouter</button>
+    <div class="input-group">
+    <label class="form-control rounded"> Ajouter une nouvelle prévision</label>
+        <button type="submit" class="btn btn-outline-primary">Ajouter</button>
+            </div>
         </form>
+        </br>
+        </br>
 
-        <table id="TABLE" class="styled-table">
+        <form asp-action="ListPrevision" method="get">
+    <div class="input-group">
+             
+            <input type="text" name="SearchString" class="form-control rounded" placeholder="Chercher par Programme, Projet, Action, DR ou Exercice" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="Chercher" class="btn btn-outline-primary" /> 
+        <a asp-action="ListPrevision" class="btn btn-outline-primary">Revenir</a>
+                
+            </div>
+        </form>
+<table data-excel-name="Another table" class="styled-table">
             <thead>
                 <tr>
                     <th>
-                        Programme
+                        <a asp-action="ListPrevision" asp-route-sortOrder="@ViewData["ProgrammeSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Programme</a>
+                        
                     </th>
                     <th>
-                        Projet
+                        <a asp-action="ListPrevision" asp-route-sortOrder="@ViewData["ProjetSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Projet</a>
+
                     </th>
                     <th>
-                        Action
+                        <a asp-action="ListPrevision" asp-route-sortOrder="@ViewData["ActionSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Action</a>
+
                     </th>
                     <th>
-                        DR
+                        <a asp-action="ListPrevision" asp-route-sortOrder="@ViewData["DrSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Direction Régionale</a>
+
                     </th>
                     <th>
-                        Annee
+                        <a asp-action="ListPrevision" asp-route-sortOrder="@ViewData["ExerciceSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Exercice</a>
+
                     </th>
 
+                    <th>
+                        Nombre
+                    </th>
+                    <th>
+                        Superficie
+                    </th>
+                    <th>
+                        Valeur
+                    </th>
+                    <th>
+                    <a asp-action="ListPrevision" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Date</a>
 
-
-                    <th>
-                        @Html.DisplayNameFor(model => model.Nombre)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Superficie)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Valeur)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Date)
                     </th>
 
                     <th></th>
@@ -209,13 +110,30 @@
                             @Html.DisplayFor(modelItem => item.Date)
                         </td>
 
-
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.Id">Modifier</a>
-                        </td>
-                        <td>
-                            <a asp-action="Delete" asp-route-id="@item.Id">Supprimer</a>
-                        </td>
+                @if (Context.Session.GetString("Profil") == "DR")
+                {
+                          <td>
+                              <a asp-action="Edit" asp-route-id="@item.Id">Modifier</a>
+                          </td>
+                          <td>
+                              <a asp-action="Delete" asp-route-id="@item.Id">Supprimer</a>
+                          </td>
+                }
+                else 
+                {
+                    if(!(item.Etat==true))
+                    {
+                         <td>
+                                <button type="button" class="btn btn-success"> <a asp-action="Valider" asp-route-id="@item.Id">Valider</a></button>
+                          </td>
+                          <td>
+                                 <button type="button" class="btn btn-danger"><a asp-action="Rejeter" asp-route-id="@item.Id">Rejeter</a></button> 
+                          </td>
+                    }
+                    
+                          
+                }
+                        
                         <td>
                             <a asp-action="ListDetails" asp-route-id="@item.Id">Liste Details</a>
                         </td>
@@ -228,24 +146,36 @@
                 }
             </tbody>
         </table>
-
-    </div>
-
-
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/lib/jquery/dist/jquery.js"></script>
-
-    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            alert("hi");
-            $("TABLE").DataTable();
-        });
-    </script>
    
-</body>
-</html>
+        @{
+            var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+            var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+        }
+
+        <a asp-action="ListPrevision"
+           asp-route-sortOrder="@ViewData["CurrentSort"]"
+           asp-route-pageNumber="@(Model.PageIndex - 1)"
+           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+           class="btn btn-default @prevDisabled">
+            Précèdent
+        </a>
+        <a asp-action="ListPrevision"
+           asp-route-sortOrder="@ViewData["CurrentSort"]"
+           asp-route-pageNumber="@(Model.PageIndex + 1)"
+           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+           class="btn btn-default @nextDisabled">
+            Suivant
+</a>
+ <div class="col-md-12 text-center">
+<button id="export" class="btn btn-secondary">Exporter en excel</button>
+</div>
+<script src="~/js/table2excel.js"></script>
+<script>
+    var table2excel = new Table2Excel();
+
+    document.getElementById('export').addEventListener('click', function () {
+        table2excel.export(document.querySelectorAll('table'));
+    });
+</script>
 
 

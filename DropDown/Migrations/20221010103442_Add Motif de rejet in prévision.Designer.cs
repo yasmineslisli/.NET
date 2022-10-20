@@ -4,6 +4,7 @@ using DropDown.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DropDown.Migrations
 {
     [DbContext(typeof(DropDownContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20221010103442_Add Motif de rejet in prévision")]
+    partial class AddMotifderejetinprévision
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

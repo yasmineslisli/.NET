@@ -28,6 +28,11 @@ namespace DropDown.Models
         public int? Valeur { get; set; }
         [Column("date")]
         public string Date { get; set; }
+        [Column("Etat")]
+        public bool? Etat { get; set; }
+        [Column("MotifRejet")]
+        public string? MotifRejet { get; set; }
+
         [Column("objectifId")]
         public int ObjectifId { get; set; }
 

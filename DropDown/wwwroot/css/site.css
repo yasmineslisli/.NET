@@ -43,4 +43,69 @@ body {
          background-color: lightgray;
     }
 
+a {
+    color: #1f1f1f;
+    text-decoration: none !important;
+    outline: none !important;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+
+
+.three_box {
+    
+    display: flex;
+}
+
+.box_text {
+    background: #fff;
+    text-align: center;
+    align-content: center;
+    height: 400px;
+    width: 500px;
    
+    box-shadow: #444 0px 0px 20px -10px;
+    margin: 50px;
+
+}
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+    color: #212121;
+    text-decoration: none !important;
+    opacity: 1
+}
+
+h2 {
+    font-size: 22px;
+}
+    .box_text h3 {
+        color: #121010;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    .box_text p {
+        font-size: 17px;
+    }
+
+    .box_text i {
+        padding: 6px 0px 10px 0px;
+        display: block;
+    }
+.btn {
+    text-decoration: none !important;
+    outline: none !important;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}

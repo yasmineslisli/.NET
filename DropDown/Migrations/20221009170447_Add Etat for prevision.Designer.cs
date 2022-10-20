@@ -4,6 +4,7 @@ using DropDown.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DropDown.Migrations
 {
     [DbContext(typeof(DropDownContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20221009170447_Add Etat for prevision")]
+    partial class AddEtatforprevision
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -185,13 +187,9 @@ namespace DropDown.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("date");
 
-                    b.Property<bool?>("Etat")
+                    b.Property<bool>("Etat")
                         .HasColumnType("bit")
                         .HasColumnName("Etat");
-
-                    b.Property<string>("MotifRejet")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("MotifRejet");
 
                     b.Property<int>("Nombre")
                         .HasColumnType("int");

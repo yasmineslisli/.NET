@@ -1,0 +1,94 @@
+﻿@model DropDown.Models.Prévision
+
+@{
+    ViewData["Title"] = "Valider";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<i class="pull-left "><img src="~/img/icons8-home-48.png" /></i>
+<span><h1>/Prévision/Rejeter la prévision</h1></span>
+
+<h4> Etes-vous surs de vouloir rejeter cette prévision?</h4>
+<hr />
+<section id="contact">
+    <div class="container-fluid">
+        <div class="row wow fadeInUp">
+            <div class="col-6 offset-3">
+                <form asp-action="Rejeter">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="form-group">
+                        <label asp-for="Objectif.ActionProj.Projet.Programme.Name" class="control-label">Programme</label>
+                        <input asp-for="Objectif.ActionProj.Projet.Programme.Name" class="form-control" readonly />
+                        <span asp-validation-for="Objectif.ActionProj.Projet.Programme.Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Objectif.ActionProj.Projet.Name" class="control-label">Projet</label>
+                        <input asp-for="Objectif.ActionProj.Projet.Name" class="form-control" readonly />
+                        <span asp-validation-for="Objectif.ActionProj.Projet.Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Objectif.ActionProj.Name" class="control-label">Action</label>
+                        <input asp-for="Objectif.ActionProj.Name" class="form-control" readonly />
+                        <span asp-validation-for="Objectif.ActionProj.Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Objectif.Exercice.Annee" class="control-label">Exercice</label>
+                        <input asp-for="Objectif.Exercice.Annee" class="form-control" readonly />
+                        <span asp-validation-for="Objectif.Exercice.Annee" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Objectif.Dr.Name" class="control-label">Direction régionale</label>
+                        <input asp-for="Objectif.Dr.Name" class="form-control" readonly />
+                        <span asp-validation-for="Objectif.Dr.Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Nombre" class="control-label"></label>
+                        <input asp-for="Nombre" class="form-control" readonly />
+                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Superficie" class="control-label"></label>
+                        <input asp-for="Superficie" class="form-control" readonly />
+                        <span asp-validation-for="Superficie" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Valeur" class="control-label"></label>
+                        <input asp-for="Valeur" class="form-control" readonly />
+                        <span asp-validation-for="Valeur" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+
+                        <input asp-for="Date" class="form-control" value="@ViewBag.Date" hidden />
+                        <span asp-validation-for="Date" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+
+                        <input asp-for="ObjectifId" class="form-control" asp-items="ViewBag.ObjectifId" hidden />
+                        <span asp-validation-for="ObjectifId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+
+                        <input asp-for="Etat" class="form-control" value=false hidden />
+                        <span asp-validation-for="Etat" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="MotifRejet" class="control-label">Motif de Rejet</label>
+                        <input asp-for="MotifRejet" class="form-control"  />
+                        <span asp-validation-for="MotifRejet" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Rejeter" class="btn btn-danger" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div>
+    <a asp-action="ListPrevision">Retour à la liste </a>
+</div>
+

@@ -18,8 +18,9 @@
     <link href="~/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="~/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
     <link href="~/css/style.css" rel="stylesheet">
-
-
+    <link href="~/css/animated.css" rel="stylesheet" />
+    <link href="~/css/fontawesome.css" rel="stylesheet" />
+   
 </head>
 <body>
     
@@ -52,10 +53,21 @@
 
                     @if (!string.IsNullOrEmpty(Context.Session.GetString("Email")))
                     {
+                        @if (Context.Session.GetString("Profil") == "DR")
+                        {
+                            <li>
+                                <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
 
-                        <li>
-                            <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li> 
+                        }
+                        else
+                        {
+                            <li>
+                                <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                        }
+
+                        
 
                         <li>
                             <a asp-area="" asp-controller="Stock" asp-action="ListStock">Stock</a>
@@ -129,7 +141,10 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/lib/jquery/dist/jquery.js"></script>
-
+    <script src="<https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.min.js>"></script>
+    <script src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+    
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

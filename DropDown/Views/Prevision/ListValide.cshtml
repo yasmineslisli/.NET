@@ -1,72 +1,61 @@
-﻿@model PaginatedList<DropDown.Models.Stock>
-
+﻿@model PaginatedList<DropDown.Models.Prévision>
+@using Microsoft.AspNetCore.Http;
 @{
-    ViewData["Title"] = "ListStock";
+    ViewData["Title"] = "ListPrevision";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    
 
-    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-<link href="~/css/site.css" rel="stylesheet" />
-    <link href="~/css/style.css" rel="stylesheet" />
-</head>
+
+
 
 <i class="pull-left "><img src="~/img/icons8-home-48.png" /></i>
-<span><h1>/Stock/Liste des Stocks</h1></span>
-
+<span><h1>/Prévision/List des prévisions validées</h1></span>
 
 
 <form class="d-inline-block" asp-controller="Cascade" asp-action="CascadeDropDown">
     <div class="form-group mb-2 d-inline-block">
-        <input name="button" value="stockId" hidden />
+        <input name="button" value="prevId" hidden />
     </div>
-    <div class="input-group">
-        <label class="form-control rounded"> Ajouter une nouvelle prévision</label>
-        <button type="submit" class="btn btn-outline-primary">Ajouter</button>
+
+    <label class="control-label"> Cliquez pour ajouter une nouvelle prévision</label>
+    <button type="submit" class="btn btn-primary mb-2">Ajouter</button>
+</form>
+
+<form asp-action="ListPrevision" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Chercher par Programme, Projet,Action, DR ou Exercice <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="Chercher" class="btn btn-default" /> |
+            <a asp-action="ListPrevision">Revenir</a>
+        </p>
     </div>
 </form>
-        </br>
-        </br>
-
-<form asp-action="ListStock" method="get">
-    <div class="input-group">
-
-        <input type="text" name="SearchString" class="form-control rounded" placeholder="Chercher par Programme, Projet, Action, DR ou Exercice" value="@ViewData["CurrentFilter"]" />
-        <input type="submit" value="Chercher" class="btn btn-outline-primary" />
-        <a asp-action="ListStock" class="btn btn-outline-primary">Revenir</a>
-
-    </div>
-</form>
-<table class="styled-table">
+<table id="TABLE" class="styled-table">
     <thead>
         <tr>
             <th>
-                <a asp-action="ListStock" asp-route-sortOrder="@ViewData["ProgrammeSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Programme</a>
+                <a asp-action="ListPrevision" asp-route-sortOrder="@ViewData["ProgrammeSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Programme</a>
 
             </th>
             <th>
-                <a asp-action="ListStock" asp-route-sortOrder="@ViewData["ProjetSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Projet</a>
+                <a asp-action="ListPrevision" asp-route-sortOrder="@ViewData["ProjetSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Projet</a>
 
             </th>
             <th>
-                <a asp-action="ListStock" asp-route-sortOrder="@ViewData["ActionSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Action</a>
+                <a asp-action="ListPrevision" asp-route-sortOrder="@ViewData["ActionSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Action</a>
 
             </th>
             <th>
-                <a asp-action="ListStock" asp-route-sortOrder="@ViewData["DrSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Direction Régionale</a>
+                <a asp-action="ListPrevision" asp-route-sortOrder="@ViewData["DrSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Direction Régionale</a>
 
             </th>
             <th>
-                <a asp-action="ListStock" asp-route-sortOrder="@ViewData["ExerciceSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Exercice</a>
+                <a asp-action="ListPrevision" asp-route-sortOrder="@ViewData["ExerciceSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Exercice</a>
 
             </th>
-           
-
 
             <th>
-                Nombre      
+                Nombre
             </th>
             <th>
                 Superficie
@@ -75,13 +64,13 @@
                 Valeur
             </th>
             <th>
-                Date
+                <a asp-action="ListPrevision" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Date</a>
+
             </th>
 
-
-
-
-            
+            <th></th>
+            <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -97,14 +86,14 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Objectif.ActionProj.Name)
                 </td>
+
+
                 <td>
                     @Html.DisplayFor(modelItem => item.Objectif.Dr.Name)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Objectif.Exercice.Annee)
                 </td>
-                
-
 
                 <td>
                     @Html.DisplayFor(modelItem => item.Nombre)
@@ -118,40 +107,43 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Date)
                 </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Modifier</a>
-                </td>
-                <td>
-                    <a asp-action="Delete" asp-route-id="@item.Id">Supprimer</a>
 
+                
+
+                <td>
+                    <a asp-action="ListDetails" asp-route-id="@item.Id">Liste Details</a>
                 </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">Ajouter Details</a>
+                </td>
+                <td>
+
             </tr>
         }
     </tbody>
 </table>
-</html>
 @{
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
     var nextDisabled = !Model.HasNextPage ? "disabled" : "";
 }
 
-<a asp-action="ListStock"
+<a asp-action="ListPrevision"
    asp-route-sortOrder="@ViewData["CurrentSort"]"
    asp-route-pageNumber="@(Model.PageIndex - 1)"
    asp-route-currentFilter="@ViewData["CurrentFilter"]"
    class="btn btn-default @prevDisabled">
     Précèdent
 </a>
-<a asp-action="ListStock"
+<a asp-action="ListPrevision"
    asp-route-sortOrder="@ViewData["CurrentSort"]"
    asp-route-pageNumber="@(Model.PageIndex + 1)"
    asp-route-currentFilter="@ViewData["CurrentFilter"]"
    class="btn btn-default @nextDisabled">
     Suivant
 </a>
-<div class="col-md-12 text-center">
-    <button id="export" class="btn btn-secondary">Exporter en excel</button>
-</div>
+<button id="export" class="btn btn-secondary">Exporter en excel</button>
+<a asp-action="Index" asp-controller="Home" class="btn btn-primary">Retour</a>
+
 <script src="~/js/table2excel.js"></script>
 <script>
     var table2excel = new Table2Excel();
@@ -160,3 +152,7 @@
         table2excel.export(document.querySelectorAll('table'));
     });
 </script>
+
+
+
+

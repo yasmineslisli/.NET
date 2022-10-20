@@ -1,10 +1,12 @@
-﻿@model IEnumerable<DropDown.Models.Detail>
+﻿@model PaginatedList<DropDown.Models.Detail>
 
 @{
     ViewData["Title"] = "ListDetails";
 }
 
-<h1>Liste des détails des prévisions</h1>
+
+<i class="pull-left "><img src="~/img/icons8-home-48.png" /></i>
+<span><h1>/Prévision/Détail/Liste des détails</h1></span>
 
 
 <table class="styled-table">
@@ -13,28 +15,28 @@
 
             @*//dd prev*@
             <th>
-                @Html.DisplayNameFor(model => model.Dd)
+                <a asp-action="ListDetails" asp-route-sortOrder="@ViewData["DdSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Délegation Régionale</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Prévision)
+                <a asp-action="ListDetails" asp-route-sortOrder="@ViewData["ActionSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Action</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NumDossier)
+                <a asp-action="ListDetails" asp-route-sortOrder="@ViewData["NumDossierSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Numero de dossier</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Trn)
+                TRN
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IndiceTrn)
+                Indice TRN
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NumTrn)
+                Numero TRN
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Superficie)
+                Superficie
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Valeur)
+                Valeur
             </th>
            
             <th></th>
@@ -77,3 +79,22 @@
 }
     </tbody>
 </table>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+        <a asp-action="ListPrevision"
+           asp-route-sortOrder="@ViewData["CurrentSort"]"
+           asp-route-pageNumber="@(Model.PageIndex - 1)"
+           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+           class="btn btn-default @prevDisabled">
+            Précèdent
+        </a>
+        <a asp-action="ListPrevision"
+           asp-route-sortOrder="@ViewData["CurrentSort"]"
+           asp-route-pageNumber="@(Model.PageIndex + 1)"
+           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+           class="btn btn-default @nextDisabled">
+            Suivant
+        </a>
